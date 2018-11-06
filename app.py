@@ -20,6 +20,7 @@ def crawling_tripadviser():
         for temp1 in temp.find_all(name="div", attrs={"class":"item name"}):
             # print(str(i) + " : " + content_name + " : " + temp1.find(name="a").text)
             temp_list.append(temp1.find(name="a").text)
+            print(temp1.find(name="a")['href'])
             i += 1
 
         tourism_dict['content'] = temp_list

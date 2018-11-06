@@ -20,6 +20,22 @@ class tourism_database:
         # get cursor
         self.cursor = self.conn.cursor()
 
+    def add_tourism_detail_list(self, tourism_list):
+        sql = "insert into crawling_tourism (TrendName, ProductName, Address, ContentName) values "
+
+        for temp_tourism in tourism_list:
+            sql += "('%s', '%s', '%s', '%s'), " % (temp_tourism.trend, temp_tourism.name, temp_tourism.address, temp_tourism.content_type)
+
+        sql = sql[:-2]
+
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            print(sql)
+        except:
+            self.conn.rollback()
+            print("ERROR : add tourism detail list")
+
 
     def add_tourism_list(self, tourism_list):
         for temp_tourism in tourism_list:
